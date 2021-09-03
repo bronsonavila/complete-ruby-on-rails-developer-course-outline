@@ -2,7 +2,7 @@
 
 ## Overview
 
-- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This is work in progress, and not all lectures will be accounted for. (Current as of September 2021.)
+- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This is a work in progress, and not all lectures will be accounted for. (Current as of September 2021.)
 
 ## Content
 
