@@ -2,19 +2,100 @@
 
 ## Overview
 
-- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This is a work in progress, and not all lectures will be accounted for. (Current as of September 2021.)
+- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This is a work in progress. Not all lectures will be accounted for. (Current as of September 2021.)
 
 ## Content
 
-### Section 1: Introduction and Setup
+### Section 2: The Ruby Programming Language
+
+#### Introduction to Ruby
+
+- [Official Ruby website](https://www.ruby-lang.org/en/)
+
+- Basic "Hello World"
+
+  ```ruby
+  puts "Hello World"  # Prints "Hello World" (followed by newline) and returns `nil`.
+
+  # Define a method.
+  def say_hello
+    p "Hello World"
+  end
+
+  say_hello  # Prints "Hello World" (followed by newline) and returns the string.
+
+  # Define a method that accepts an argument.
+  def say_something(str)
+    print str
+  end
+
+  # Assign a string to a variable.
+  greeting = "Hello World"
+
+  say_something greeting  # Prints "Hello World" (without a newline) and returns `nil`.
+  ```
+
+- Run a Ruby file (any file with an `.rb` extension) by running `ruby <file_name>.rb`.
+
+- Quickly access an interactive Ruby environment by running `irb` in your terminal.
+
+#### Working with Strings
+
+- Strings can be set with either single or double quotation marks: `'John'` or `"John"`.
+
+- String interpolation is only possible when using double quotation marks:
+
+  ```ruby
+  first_name = 'John'
+  last_name = 'Doe'
+
+  "My name is #{first_name} #{last_name}."
+
+  # => "My name is John Doe."
+  ```
+
+- Determine whether a value is a string (or any other class type) by using the `.class` method:
+
+  ```ruby
+  "John".class
+
+  # => String
+  ```
+
+- View all available string methods: `"John".methods`
+
+- Examples of string methods:
+
+  ```ruby
+  # Uppercase and reverse:
+  "John".upcase.reverse
+
+  # => "NHOJ"
+  ```
+
+  ```ruby
+  # Substitute string characters:
+  sentence = 'Welcome to the jungle.'
+  sentence.sub('the jungle', 'utopia')
+
+  # => "Welcome to utopia."
+  ```
+
+  ```ruby
+  # Convert a string to an integer:
+  input = '10'
+  input.to_i
+
+  # => 10
+  ```
 
 ### Section 13: Rails installation and usage: Mac
 
-#### 414. Install RVM (Ruby version manager)
+#### Install RVM (Ruby version manager)
 
 - Go to [Installing RVM](https://rvm.io/rvm/install) and follow the installation instructions.
 
-#### 415. Install Ruby
+#### Install Ruby
 
 - Run `rvm list` to see what versions of Ruby have been installed on your system.
 
@@ -26,7 +107,7 @@
 
 - Run `rvm use <version>` to switch to a specific version, and run `rvm use default` to switch back to the default version.
 
-#### 417. Install and use Ruby on Rails 6
+#### Install and use Ruby on Rails 6
 
 - Install the following gems:
 
@@ -42,7 +123,7 @@
 
 - Run `rails s` from within your new application's root directory to start the Rails server (the Puma server).
 
-#### 418. Install and use Ruby on Rails 5
+#### Install and use Ruby on Rails 5
 
 - **IMPORTANT:** You may need to use `rvm` to switch to an older version of Ruby (e.g., `ruby-2.6.6`) in order to run Rails 5.
 
