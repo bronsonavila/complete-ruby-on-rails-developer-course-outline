@@ -41,15 +41,13 @@
   say_something greeting  # Prints "Hello World" (without a newline) and returns `nil`.
   ```
 
-- Run a Ruby file (any file with an `.rb` extension) by running `ruby <file_name>.rb`.
+- Run a Ruby file (any file with a `.rb` extension) by running `ruby <file_name>.rb`.
 
 - Quickly access an interactive Ruby environment by running `irb` in your terminal.
 
 #### Strings
 
-- Strings can be set with either single or double quotation marks: `'John'` or `"John"`.
-
-- String interpolation is only possible when using double quotation marks:
+- Strings can be set with either single or double quotation marks, but string interpolation is only possible when using double quotation marks:
 
   ```ruby
   first_name = 'John'
@@ -142,7 +140,7 @@
   <=  # Less than or equal to
   ```
 
-  - **NOTE:** Ruby supports the `===` operator, but it behaves as a [case subsumption operator](https://stackoverflow.com/a/4467823/9027907).
+- Ruby supports the `===` operator, but it behaves as a [case subsumption operator](https://stackoverflow.com/a/4467823/9027907).
 
 - To check if two values are equal both in value and type, use `.eql?`:
 
@@ -170,13 +168,13 @@
   # => 6
   ```
 
-  - **NOTE:** It is also valid to omit the parentheses when calling a function:
+- It is also valid to omit the parentheses when calling a method:
 
-    ```ruby
-    multiply 2, 3
+  ```ruby
+  multiply 2, 3
 
-    # => 6
-    ```
+  # => 6
+  ```
 
 #### Branching (Conditionals)
 
@@ -414,37 +412,37 @@
   # Email: john@bar.com.
   ```
 
-  - **NOTE:** If the `attr_accessor` is not provided, then attributes can only be read and modified via getters and setters:
+- If the `attr_accessor` is not provided, then attributes can only be read and modified via getters and setters:
 
-    ```ruby
-    class User
-      def initialize(name)
-        @_id = rand()
-        @name = name
-      end
-
-      # Getter
-      def name
-        @name
-      end
-
-      # Setter
-      def name=(name)
-        @name = name
-      end
+  ```ruby
+  class User
+    def initialize(name)
+      @_id = rand()
+      @name = name
     end
 
-    user = User.new('John')
+    # Getter
+    def name
+      @name
+    end
 
-    user.name = 'John Doe'
-    user.name
+    # Setter
+    def name=(name)
+      @name = name
+    end
+  end
 
-    # => "John Doe"
+  user = User.new('John')
 
-    user._id = 'baz'
+  user.name = 'John Doe'
+  user.name
 
-    # => NoMethodError (undefined method `_id=' for #<User @name="John", ...
-    ```
+  # => "John Doe"
+
+  user._id = 'baz'
+
+  # => NoMethodError (undefined method `_id=' for #<User @name="John", ...
+  ```
 
 ### Section 13: Rails Installation and Usage (Mac)
 
