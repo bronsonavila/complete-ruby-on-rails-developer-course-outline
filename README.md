@@ -444,6 +444,55 @@
   # => NoMethodError (undefined method `_id=' for #<User @name="John", ...
   ```
 
+#### Modules and Mixins
+
+- A set of related methods can be encapsulated within a module, and that module's methods can be included within a class. Example using the `bcrypt` library:
+
+  ```ruby
+  # ./auth.rb
+
+  require 'bundler/inline'
+
+  gemfile true do
+    source 'https://rubygems.org/'
+    gem 'bcrypt'
+  end
+
+  module Auth
+    require 'bcrypt'
+
+    def create_hashed_password(password)
+      BCrypt::Password.create(password)
+    end
+
+    # ...
+  end
+  ```
+
+  ```ruby
+  # ./user.rb
+
+  require_relative 'auth'
+
+  class User
+    include Auth
+    attr_accessor :username, :password
+
+    def initialize(username, password)
+      @username = username
+      @password = password
+    end
+
+    # ...
+  end
+
+  user = User.new('John', 'hunter2')
+
+  hashed_password = user.create_hashed_password(user.password)
+
+  # => $2a$12$bPEn4MXq2rQEQbyjkBmUIugY8mn3UD1.yY1YpxYxCG7.JpOeVaCU2
+  ```
+
 ### Section 13: Rails Installation and Usage (Mac)
 
 #### Install RVM (Ruby Version Manager)
