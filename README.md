@@ -2,7 +2,7 @@
 
 ## Overview
 
-- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This is a work in progress. Not all lectures will be accounted for. (Current as of September 2021.)
+- Outline of [The Complete Ruby on Rails Developer Course](https://www.udemy.com/course/the-complete-ruby-on-rails-developer-course/) by Rob Percival and Mashrur Hossain. This personal quick reference guide is a work in progress. Not all lectures or concepts will be accounted for. (Current as of September 2021.)
 
 ## Content
 
@@ -10,7 +10,13 @@
 
 #### Introduction to Ruby
 
-- Link to the [official Ruby website](https://www.ruby-lang.org/en/).
+- Useful links:
+
+  - [Official Ruby website](https://www.ruby-lang.org/en/)
+
+  - [Try Ruby](https://try.ruby-lang.org/)
+
+  - [RuboCop](https://github.com/rubocop/rubocop) is a linter and code formatter that enforces many of the guidelines outlined in the [Ruby Style Guide](https://rubystyle.guide/).
 
 - Basic "Hello World":
 
@@ -39,7 +45,7 @@
 
 - Quickly access an interactive Ruby environment by running `irb` in your terminal.
 
-#### Working with Strings
+#### Strings
 
 - Strings can be set with either single or double quotation marks: `'John'` or `"John"`.
 
@@ -89,7 +95,7 @@
   # => 10
   ```
 
-#### Working with Numbers
+#### Numbers
 
 - All numbers without decimals will operate as integers and will only yield integers as their calculated result. If a calculated result should contain a decimal, then at least one number in the calculation must be a float:
 
@@ -164,7 +170,15 @@
   # => 6
   ```
 
-#### Branching
+  - **NOTE:** It is also valid to omit the parentheses when calling a function:
+
+    ```ruby
+    multiply 2, 3
+
+    # => 6
+    ```
+
+#### Branching (Conditionals)
 
 - Example:
 
@@ -176,6 +190,12 @@
   else
     puts '🙃'
   end
+  ```
+
+- `if` statements can also be evaluated on a single line:
+
+  ```ruby
+  puts 'foo is true' if foo == true
   ```
 
 #### Arrays and Iterators
@@ -254,7 +274,6 @@
   ```ruby
   arr = [1, 2, 3, 4]
 
-  # Print 1234:
   arr.each do |i|
     print i
   end
@@ -273,6 +292,8 @@
     end
     ```
 
+  - **NOTE:** See [Loops (for, while, do..while, until)](https://www.geeksforgeeks.org/ruby-loops-for-while-do-while-until/) for more information on Ruby loops.
+
 - Filter an array with the `.select` method:
 
   ```ruby
@@ -283,6 +304,147 @@
 
   # => [1, 3]
   ```
+
+#### Hashes
+
+- Example:
+
+  ```ruby
+  hash = { 'a' => 1, 'b' => 2, 'c' => 3 }
+
+  hash['a']
+
+  # => 1
+  ```
+
+- Hash keys can also be symbols instead of strings:
+
+  ```ruby
+  hash = { a: 1, b: 2, c: 3 }
+
+  hash[:b]
+
+  # => 2
+
+  hash[:c] = 4
+  hash[:d] = 8
+  hash
+
+  # => { :a => 1, :b => 2, :c => 4, :d => 8 }
+  ```
+
+- Use `.keys` and `.values` methods to get an array of a hash's keys/values respectively:
+
+  ```ruby
+  hash = { a: 1, b: 2, c: 3 }
+
+  hash.keys
+
+  # => [:a, :b, :c]
+
+  hash.values
+
+  # => [1, 2, 3]
+  ```
+
+- Iterate over a hash:
+
+  ```ruby
+  hash = { a: 1, b: 'foo', c: 3 }
+
+  hash.each { |key, value| puts "#{key} / #{value}" }
+
+  # a / 1
+  # b / foo
+  # c / 3
+
+  hash.select { |key, value| value.is_a?(Integer) }
+
+  # => { :a => 1, :c => 3 }
+
+  hash.each { |key, value| hash.delete(key) if value.is_a?(Integer) }
+
+  # => { :b => "foo" }
+  ```
+
+#### Classes
+
+- Example:
+
+  ```ruby
+  class User
+    attr_accessor :name, :email   # Read/write access
+    attr_reader :_id               # Read access only
+
+    def initialize(name, email)
+      @_id = rand()
+      @name = name
+      @email = email
+    end
+
+    def get_info
+      {
+        name: @name,
+        email: @email
+      }
+    end
+
+    # This string is displayed whenever printing an instance.
+    def to_s
+      "User: #{@name}.\nEmail: #{@email}."
+    end
+
+    # Use `self` to define Class-only methods.
+    def self.attrs
+      [:name, :email]
+    end
+  end
+
+  user = User.new('John', 'john@foo.com')
+
+  user.get_info
+
+  # => { :name => "John", :email => "john@foo.com" }
+
+  user.email = 'john@bar.com'
+
+  puts user
+
+  # User: John.
+  # Email: john@bar.com.
+  ```
+
+  - **NOTE:** If the `attr_accessor` is not provided, then attributes can only be read and modified via getters and setters:
+
+    ```ruby
+    class User
+      def initialize(name)
+        @_id = rand()
+        @name = name
+      end
+
+      # Getter
+      def name
+        @name
+      end
+
+      # Setter
+      def name=(name)
+        @name = name
+      end
+    end
+
+    user = User.new('John')
+
+    user.name = 'John Doe'
+    user.name
+
+    # => "John Doe"
+
+    user._id = 'baz'
+
+    # => NoMethodError (undefined method `_id=' for #<User @name="John", ...
+    ```
 
 ### Section 13: Rails Installation and Usage (Mac)
 
