@@ -449,7 +449,7 @@
 - A set of related methods can be encapsulated within a module, and that module's methods can be included within a class. Example using the `bcrypt` library:
 
   ```ruby
-  # ./auth.rb
+  # /auth.rb
 
   require 'bundler/inline'
 
@@ -470,7 +470,7 @@
   ```
 
   ```ruby
-  # ./user.rb
+  # /user.rb
 
   require_relative 'auth'
 
@@ -492,6 +492,113 @@
 
   # => $2a$12$bPEn4MXq2rQEQbyjkBmUIugY8mn3UD1.yY1YpxYxCG7.JpOeVaCU2
   ```
+
+### Section 3: Introduction to Ruby on Rails
+
+#### Useful Links
+
+- [Official Ruby on Rails website](https://rubyonrails.org/)
+
+- [Getting Started](https://guides.rubyonrails.org/getting_started.html)
+
+#### Structure of a Rails Application
+
+- Key elements of a Rails 6 application:
+
+  ```
+  app/
+  ├─ assets/
+  │  ├─ images/
+  │  └─ stylesheets/
+  ├─ channels/application_cable/
+  ├─ controllers/
+  ├─ helpers/
+  ├─ javascript/
+  ├─ models/
+  └─ views/
+  config/
+  ├─ environments/
+  └─ routes.rb
+  db/
+  Gemfile
+  ```
+
+- App
+
+  ##### Assets
+
+  - Store static assets like images and stylesheets.
+
+  ##### Channels / Application Cable
+
+  - Makes real-time communication (e.g., a chat application) available within the Rails application.
+
+  ##### Controllers
+
+  - Create a new controller in your Rails application by running `rails generate controller #{controller_name}`.
+
+  - All controllers inherit from the `ApplicationController` class.
+
+  ##### Helpers
+
+  - Helper functions to be used by view templates.
+
+  ##### JavaScript
+
+  - Makes JavaScript available throughout the application (bundled by Webpack).
+
+  ##### Models
+
+  - All models inherit from the `ApplicationRecord` class.
+
+  ##### Views
+
+  - Views consist of ERB (Embedded RuBy) files (ending in `.html.erb`).
+
+  - All views are served through `layouts/application.html.erb` (view the `yield` keyword).
+
+- Config
+
+  ##### Environments
+
+  - Defines different configuration settings for each environment (e.g., development, production).
+
+  ##### Routes
+
+  - Example:
+
+    ```ruby
+    # /config/routes.rb
+
+    Rails.application.routes.draw do
+      root 'pages#home'
+    end
+    ```
+
+    ```ruby
+    # /app/controllers/pages_controller.rb
+
+    class PagesController < ApplicationController
+      def home
+      end
+    end
+    ```
+
+    ```html
+    <!-- app/views/pages/home.html.erb -->
+
+    <h1>Hello World!</h1>
+    ```
+
+- DB
+
+  - Contains development and test databases (SQLite), migration files, and a schema file.
+
+- Gemfile
+
+  - Shows all of the gems that are being used by the application.
+
+  - A `Gemfile.lock` will be created after installing your dependencies when running `bundle install`.
 
 ### Section 13: Rails Installation and Usage (Mac)
 
